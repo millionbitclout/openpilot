@@ -345,11 +345,11 @@ class CarController():
 
       print('self.final_speed_kph={}  v_cruise_kph_prev={}'.format(self.final_speed_kph, v_cruise_kph_prev))
 
-      if self.final_speed_kph_prev != cruise_set_point:
+      if self.final_speed_kph_prev != self.final_speed_kph:
         cruise_set_point = self.final_speed_kph
         self.button_count += 1
       if self.button_count > 5:
         self.button_count = 0
         cruise_set_point = 0
-        self.final_speed_kph_prev = cruise_set_point
+        self.final_speed_kph_prev = self.final_speed_kph
     return cruise_set_point

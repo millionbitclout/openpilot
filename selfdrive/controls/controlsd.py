@@ -416,7 +416,7 @@ class Controls:
     if CS.cruiseState.enabled:
       if not self.CP.pcmCruise:
         self.v_cruise_kph = update_v_cruise(self.v_cruise_kph, CS.buttonEvents, self.button_timers, self.enabled, self.is_metric)
-      elif self.CP.pcmCruise and not self.CP.pcmCruiseSpeed:
+      elif not self.CP.openpilotLongitudinalControl and not self.CP.pcmCruiseSpeed:
         self.v_cruise_kph = update_v_cruise_speed(self.v_cruise_kph, CS.buttonEvents, self.button_timers, self.enabled, self.is_metric)
       elif self.CP.pcmCruise:
         self.v_cruise_kph = CS.cruiseState.speed * CV.MS_TO_KPH
