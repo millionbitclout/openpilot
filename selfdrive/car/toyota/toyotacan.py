@@ -52,11 +52,18 @@ def create_acc_spam_command(packer, button):
   return packer.make_can_msg("PCM_CRUISE", 0, values)
 
 
-def create_acc_set_speed(packer, button):
+def create_acc_set_speed(packer, speed):
   values = {
-    "SET_SPEED": button,
+    "SET_SPEED": speed,
   }
   return packer.make_can_msg("PCM_CRUISE_2", 0, values)
+
+
+def create_acc_ui_set_speed(packer, speed):
+  values = {
+    "UI_SET_SPEED": speed,
+  }
+  return packer.make_can_msg("PCM_CRUISE_SM", 0, values)
 
 
 def create_acc_cancel_command(packer):

@@ -4,7 +4,7 @@ from common.realtime import DT_CTRL
 from selfdrive.car import apply_toyota_steer_torque_limits, create_gas_interceptor_command, make_can_msg
 from selfdrive.car.toyota.toyotacan import create_steer_command, create_ui_command, create_ui_command_off,\
                                            create_accel_command, create_acc_cancel_command, \
-                                           create_fcw_command, create_lta_steer_command, create_acc_set_speed
+                                           create_fcw_command, create_lta_steer_command, create_acc_set_speed, create_acc_ui_set_speed
 from selfdrive.car.toyota.values import CAR, STATIC_DSU_MSGS, NO_STOP_TIMER_CAR, TSS2_CAR, \
                                         MIN_ACC_SPEED, PEDAL_TRANSITION, CarControllerParams, CruiseButtons
 from opendbc.can.packer import CANPacker
@@ -159,6 +159,7 @@ class CarController():
         cruise_set_point = self.get_cruise_speed(CS)
         if cruise_set_point != 0:
           can_sends.append(create_acc_set_speed(self.packer, cruise_set_point))
+          can_sends.append(create_acc_ui_set_speed(self.packer, cruise_set_point))
 
     # ui mesg is at 100Hz but we send asap if:
     # - there is something to display
