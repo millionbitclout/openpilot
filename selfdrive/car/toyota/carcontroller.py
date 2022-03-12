@@ -161,7 +161,7 @@ class CarController():
         cruise_set_point = self.get_cruise_speed(CS)
         if cruise_set_point is not None:
           can_sends.append(create_acc_set_speed(self.packer, cruise_set_point))
-          can_sends.append(create_acc_ui_set_speed(self.packer, round(cruise_set_point * CV.KPH_TO_MPH) if not is_metric else cruise_set_point))
+          #can_sends.append(create_acc_ui_set_speed(self.packer, round(cruise_set_point * CV.KPH_TO_MPH) if not is_metric else cruise_set_point))
 
     # ui mesg is at 100Hz but we send asap if:
     # - there is something to display
