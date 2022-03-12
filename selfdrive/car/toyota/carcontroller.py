@@ -157,7 +157,7 @@ class CarController():
     if not CS.CP.openpilotLongitudinalControl:
       if not CS.out.cruiseState.standstill and CS.acc_active and self.speed_limit_control_enabled:
         cruise_set_point = self.get_cruise_speed(CS)
-        if cruise_set_point != 0:
+        if cruise_set_point is not None:
           can_sends.append(create_acc_set_speed(self.packer, cruise_set_point))
           can_sends.append(create_acc_ui_set_speed(self.packer, cruise_set_point))
 
@@ -328,7 +328,7 @@ class CarController():
     return cruise_button
 
   def get_cruise_speed(self, CS):
-    cruise_set_point = 0
+    cruise_set_point = None
     if not self.get_cruise_buttons_status(CS):
       pass
     elif CS.cruise_active:
@@ -346,11 +346,12 @@ class CarController():
 
       print('self.final_speed_kph={}  v_cruise_kph_prev={}'.format(self.final_speed_kph, v_cruise_kph_prev))
 
-      if self.final_speed_kph_prev != self.final_speed_kph:
-        cruise_set_point = self.final_speed_kph
-        self.button_count += 1
-      if self.button_count > 5:
-        self.button_count = 0
-        cruise_set_point = 0
-        self.final_speed_kph_prev = self.final_speed_kph
+      #if self.final_speed_kph_prev != self.final_speed_kph:
+      #  cruise_set_point = self.final_speed_kph
+      #  self.button_count += 1
+      #if self.button_count > 5:
+      #  self.button_count = 0
+      #  cruise_set_point = 0
+      #  self.final_speed_kph_prev = self.final_speed_kph
+      cruise_set_point = self.final_speed_kph
     return cruise_set_point
