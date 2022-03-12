@@ -331,9 +331,10 @@ class CarController():
 
   def get_cruise_speed(self, CS):
     cruise_set_point = None
-    if not self.get_cruise_buttons_status(CS):
-      pass
-    elif CS.cruise_active:
+    #if not self.get_cruise_buttons_status(CS):
+    #  pass
+    #elif CS.cruise_active:
+    if CS.cruise_active:
       self.sm.update(0)
       v_cruise_kph_prev = self.sm['controlsState'].vCruise
       set_speed_kph = self.get_target_speed(v_cruise_kph_prev)
