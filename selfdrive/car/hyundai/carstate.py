@@ -115,11 +115,11 @@ class CarState(CarStateBase):
       ret.cruiseState.enabled = cp.vl["TCS13"]["ACC_REQ"] == 1
       ret.cruiseState.standstill = False
     else:
-      ret.cruiseState.available = cp.vl["SCC11"]["MainMode_ACC"] == 1
-      ret.cruiseState.enabled = cp.vl["SCC12"]["ACCMode"] != 0
+      ret.cruiseState.available = cp_cam.vl["SCC11"]["MainMode_ACC"] == 1
+      ret.cruiseState.enabled = cp_cam.vl["SCC12"]["ACCMode"] != 0
       self.acc_active = ret.cruiseState.enabled
       self.cruise_active = self.acc_active
-      ret.cruiseState.standstill = cp.vl["SCC11"]["SCCInfoDisplay"] == 4.
+      ret.cruiseState.standstill = cp_cam.vl["SCC11"]["SCCInfoDisplay"] == 4.
 
     self.cruiseState_standstill = ret.cruiseState.standstill
 
@@ -197,7 +197,7 @@ class CarState(CarStateBase):
 
     if not self.CP.openpilotLongitudinalControl:
       speed_conv = CV.MPH_TO_MS if cp.vl["CLU11"]["CF_Clu_SPEED_UNIT"] else CV.KPH_TO_MS
-      ret.cruiseState.speed = cp.vl["SCC11"]["VSetDis"] * speed_conv
+      ret.cruiseState.speed = cp_cam.vl["SCC11"]["VSetDis"] * speed_conv
 
     if self.CP.carFingerprint in (HYBRID_CAR | EV_CAR):
       if self.CP.carFingerprint in HYBRID_CAR:
@@ -224,11 +224,11 @@ class CarState(CarStateBase):
 
     if not self.CP.openpilotLongitudinalControl:
       if self.CP.carFingerprint in FEATURES["use_fca"]:
-        ret.stockAeb = cp.vl["FCA11"]["FCA_CmdAct"] != 0
-        ret.stockFcw = cp.vl["FCA11"]["CF_VSM_Warn"] == 2
+        ret.stockAeb = cp_cam.vl["FCA11"]["FCA_CmdAct"] != 0
+        ret.stockFcw = cp_cam.vl["FCA11"]["CF_VSM_Warn"] == 2
       else:
-        ret.stockAeb = cp.vl["SCC12"]["AEB_CmdAct"] != 0
-        ret.stockFcw = cp.vl["SCC12"]["CF_VSM_Warn"] == 2
+        ret.stockAeb = cp_cam.vl["SCC12"]["AEB_CmdAct"] != 0
+        ret.stockFcw = cp_cam.vl["SCC12"]["CF_VSM_Warn"] == 2
 
     if self.CP.enableBsm:
       ret.leftBlindspot = cp.vl["LCA11"]["CF_Lca_IndLeft"] != 0
@@ -242,8 +242,8 @@ class CarState(CarStateBase):
     self.brake_error = cp.vl["TCS13"]["ACCEnable"] != 0 # 0 ACC CONTROL ENABLED, 1-3 ACC CONTROL DISABLED
 
     if not self.CP.openpilotLongitudinalControl:
-      ret.radarObjValid = cp.vl["SCC11"]["ObjValid"] == 1
-      self.lead_distance = cp.vl["SCC11"]["ACC_ObjDist"]
+      ret.radarObjValid = cp_cam.vl["SCC11"]["ObjValid"] == 1
+      self.lead_distance = cp_cam.vl["SCC11"]["ACC_ObjDist"]
 
     return ret
 
@@ -319,33 +319,6 @@ class CarState(CarStateBase):
       ("WHL_SPD11", 50),
       ("SAS11", 100),
     ]
-
-    if not CP.openpilotLongitudinalControl:
-      signals += [
-        ("MainMode_ACC", "SCC11", 0),
-        ("VSetDis", "SCC11", 0),
-        ("SCCInfoDisplay", "SCC11", 0),
-        ("ACC_ObjDist", "SCC11", 0),
-        ("ACCMode", "SCC12", 1),
-        ("ObjValid", "SCC11", 0),
-      ]
-
-      checks += [
-        ("SCC11", 50),
-        ("SCC12", 50),
-      ]
-
-      if CP.carFingerprint in FEATURES["use_fca"]:
-        signals += [
-          ("FCA_CmdAct", "FCA11", 0),
-          ("CF_VSM_Warn", "FCA11", 0),
-        ]
-        checks += [("FCA11", 50)]
-      else:
-        signals += [
-          ("AEB_CmdAct", "SCC12", 0),
-          ("CF_VSM_Warn", "SCC12", 0),
-        ]
 
     if CP.enableBsm:
       signals += [
@@ -428,5 +401,32 @@ class CarState(CarStateBase):
     checks = [
       ("LKAS11", 100)
     ]
+
+    if not CP.openpilotLongitudinalControl:
+      signals += [
+        ("MainMode_ACC", "SCC11", 0),
+        ("VSetDis", "SCC11", 0),
+        ("SCCInfoDisplay", "SCC11", 0),
+        ("ACC_ObjDist", "SCC11", 0),
+        ("ACCMode", "SCC12", 1),
+        ("ObjValid", "SCC11", 0),
+      ]
+
+      checks += [
+        ("SCC11", 50),
+        ("SCC12", 50),
+      ]
+
+      if CP.carFingerprint in FEATURES["use_fca"]:
+        signals += [
+          ("FCA_CmdAct", "FCA11", 0),
+          ("CF_VSM_Warn", "FCA11", 0),
+        ]
+        checks += [("FCA11", 50)]
+      else:
+        signals += [
+          ("AEB_CmdAct", "SCC12", 0),
+          ("CF_VSM_Warn", "SCC12", 0),
+        ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], signals, checks, 2)
