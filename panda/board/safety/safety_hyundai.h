@@ -149,7 +149,7 @@ static int hyundai_rx_hook(CANPacket_t *to_push) {
                                  hyundai_get_checksum, hyundai_compute_checksum,
                                  hyundai_get_counter);
 
-  if (valid)) {
+  if (valid) {
     int addr = GET_ADDR(to_push);
 
     if (addr == 593) {
