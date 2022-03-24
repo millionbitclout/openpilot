@@ -206,8 +206,8 @@ class CarState(CarStateBase):
       ret.leftBlindspot = (cp.vl["BSM"]["L_ADJACENT"] == 1) or (cp.vl["BSM"]["L_APPROACHING"] == 1)
       ret.rightBlindspot = (cp.vl["BSM"]["R_ADJACENT"] == 1) or (cp.vl["BSM"]["R_APPROACHING"] == 1)
 
-    self.pcm_cruise_2_msg = copy.copy(cp.vl["PCM_CRUISE"])
-    self.pcm_cruise_sm_msg = copy.copy(cp.vl["PCM_CRUISE_2"])
+    self.pcm_cruise_2_msg = copy.copy(cp.vl["PCM_CRUISE_2"])
+    self.pcm_cruise_sm_msg = copy.copy(cp.vl["PCM_CRUISE_SM"])
 
     return ret
 
@@ -267,6 +267,9 @@ class CarState(CarStateBase):
       signals.append(("MAIN_ON", "PCM_CRUISE_2", 0))
       signals.append(("SET_SPEED", "PCM_CRUISE_2", 0))
       signals.append(("LOW_SPEED_LOCKOUT", "PCM_CRUISE_2", 0))
+      signals.append(("Signal1", "PCM_CRUISE_2", 0))
+      signals.append(("Signal2", "PCM_CRUISE_2", 0))
+      signals.append(("Signal3", "PCM_CRUISE_2", 0))
       checks.append(("PCM_CRUISE_2", 33))
 
     # add gas interceptor reading if we are using it

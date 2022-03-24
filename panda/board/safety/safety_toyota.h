@@ -273,7 +273,12 @@ static int toyota_fwd_hook(int bus_num, CANPacket_t *to_fwd) {
   int bus_fwd = -1;
 
   if (bus_num == 0) {
-    bus_fwd = 2;
+    int addr = GET_ADDR(to_fwd);
+    int is_pcm_cruise_2_msg = (addr == 0x1D3);
+    int block_msg = is_pcm_cruise_2_msg;
+    if (!block_msg) {
+      bus_fwd = 2;
+    }
   }
 
   if (bus_num == 2) {
