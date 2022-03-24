@@ -1,3 +1,5 @@
+import copy
+
 def create_steer_command(packer, steer, steer_req, raw_cnt):
   """Creates a CAN message for the Toyota Steer Command."""
 
@@ -52,17 +54,17 @@ def create_acc_spam_command(packer, button):
   return packer.make_can_msg("PCM_CRUISE", 0, values)
 
 
-def create_acc_set_speed(packer, speed):
-  values = {
-    "SET_SPEED": speed,
-  }
+def create_acc_set_speed(packer, pcm_cruise_2_msg, speed):
+  values = copy.copy(pcm_cruise_2_msg)
+  values["SET_SPEED"] = speed
+
   return packer.make_can_msg("PCM_CRUISE_2", 0, values)
 
 
-def create_acc_ui_set_speed(packer, speed):
-  values = {
-    "UI_SET_SPEED": speed,
-  }
+def create_acc_ui_set_speed(packer, pcm_cruise_sm_msg, speed):
+  values = copy.copy(pcm_cruise_sm_msg)
+  values["UI_SET_SPEED"] = speed
+
   return packer.make_can_msg("PCM_CRUISE_SM", 0, values)
 
 

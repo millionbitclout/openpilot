@@ -1,3 +1,4 @@
+import copy
 from cereal import car
 from common.numpy_fast import mean
 from common.filter_simple import FirstOrderFilter
@@ -204,6 +205,9 @@ class CarState(CarStateBase):
     if self.CP.enableBsm:
       ret.leftBlindspot = (cp.vl["BSM"]["L_ADJACENT"] == 1) or (cp.vl["BSM"]["L_APPROACHING"] == 1)
       ret.rightBlindspot = (cp.vl["BSM"]["R_ADJACENT"] == 1) or (cp.vl["BSM"]["R_APPROACHING"] == 1)
+
+    self.pcm_cruise_2_msg = copy.copy(cp.vl["PCM_CRUISE"])
+    self.pcm_cruise_sm_msg = copy.copy(cp.vl["PCM_CRUISE_2"])
 
     return ret
 

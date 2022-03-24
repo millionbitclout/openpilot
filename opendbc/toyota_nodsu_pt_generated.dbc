@@ -71,18 +71,28 @@ BO_ 452 ENGINE_RPM: 8 CGW
  SG_ RPM : 7|16@0- (0.78125,0) [0|0] "rpm" SCS
 
 BO_ 466 PCM_CRUISE: 8 XXX
+ SG_ Signal1 : 0|4@1+ (1,0) [0|15] "" XXX
  SG_ GAS_RELEASED : 4|1@0+ (1,0) [0|1] "" XXX
  SG_ CRUISE_ACTIVE : 5|1@0+ (1,0) [0|1] "" XXX
+ SG_ Signal2 : 7|2@0+ (1,0) [0|3] "" XXX
+ SG_ Signal3 : 8|4@1+ (1,0) [0|15] "" XXX
  SG_ STANDSTILL_ON : 12|1@0+ (1,0) [0|1] "" XXX
+ SG_ Signal4 : 15|3@0+ (1,0) [0|7] "" XXX
  SG_ ACCEL_NET : 23|16@0- (0.001,0) [-20|20] "m/s2" XXX
+ SG_ Signal5 : 39|16@0+ (1,0) [0|65535] "" XXX
  SG_ CRUISE_STATE : 55|4@0+ (1,0) [0|15] "" XXX
+ SG_ Signal6 : 48|1@0+ (1,0) [0|1] "" XXX
  SG_ CANCEL_REQ : 49|1@1+ (1,0) [0|1] "" XXX
+ SG_ Signal7 : 50|2@1+ (1,0) [0|3] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
 BO_ 467 PCM_CRUISE_2: 8 XXX
+ SG_ Signal1 : 7|8@0+ (1,0) [0|255] "" XXX
+ SG_ Signal2 : 12|5@0+ (1,0) [0|31] "" XXX
  SG_ MAIN_ON : 15|1@0+ (1,0) [0|1] "" XXX
  SG_ LOW_SPEED_LOCKOUT : 14|2@0+ (1,0) [0|3] "kph" XXX
  SG_ SET_SPEED : 23|8@0+ (1,0) [0|255] "kph" XXX
+ SG_ Signal3 : 31|32@0+ (1,0) [0|4294967295] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
 
 BO_ 552 ACCELEROMETER: 8 XXX
@@ -154,10 +164,16 @@ BO_ 869 DSU_CRUISE : 7 DSU
  SG_ LEAD_DISTANCE : 39|8@0+ (1,0) [0|0] "m" XXX
 
 BO_ 921 PCM_CRUISE_SM: 8 XXX
+ SG_ Signal1 : 0|4@1+ (1,0) [0|15] "" XXX
  SG_ MAIN_ON : 4|1@0+ (1,0) [0|1] "" XXX
+ SG_ Signal2 : 7|3@0+ (1,0) [0|7] "" XXX
  SG_ CRUISE_CONTROL_STATE : 11|4@0+ (1,0) [0|15] "" XXX
+ SG_ Signal3 : 12|1@0+ (1,0) [0|1] "" XXX
  SG_ DISTANCE_LINES : 14|2@0+ (1,0) [0|3] "" XXX
+ SG_ Signal4 : 15|1@0+ (1,0) [0|1] "" XXX
+ SG_ Signal5 : 23|8@0+ (1,0) [0|255] "" XXX
  SG_ UI_SET_SPEED : 31|8@0+ (1,0) [0|255] "" XXX
+ SG_ Signal6 : 39|32@0+ (1,0) [0|4294967295] "" XXX
 
 BO_ 951 ESP_CONTROL: 8 ESP
  SG_ TC_DISABLED : 13|1@0+ (1,0) [0|1] "" XXX
