@@ -36,7 +36,7 @@ AddrCheckStruct toyota_addr_checks[] = {
   {.msg = {{0x260, 0, 8, .check_checksum = true, .expected_timestep = 20000U}, { 0 }, { 0 }}},
   {.msg = {{0x1D2, 0, 8, .check_checksum = true, .expected_timestep = 30000U}, { 0 }, { 0 }}},
   {.msg = {{0x1D3, 0, 8, .check_checksum = true, .expected_timestep = 30000U}, { 0 }, { 0 }}},
-  {.msg = {{0x399, 0, 8, .check_checksum = true, .expected_timestep = 1000000U}, { 0 }, { 0 }}},
+  {.msg = {{0x399, 0, 8, .check_checksum = false, .expected_timestep = 1000000U}, { 0 }, { 0 }}},
   {.msg = {{0x412, 2, 8, .check_checksum = false, .expected_timestep = 1000000U}, { 0 }, { 0 }}},
   {.msg = {{0x224, 0, 8, .check_checksum = false, .expected_timestep = 25000U},
            {0x226, 0, 8, .check_checksum = false, .expected_timestep = 25000U}, { 0 }}},
