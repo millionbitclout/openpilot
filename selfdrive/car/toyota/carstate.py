@@ -270,7 +270,18 @@ class CarState(CarStateBase):
       signals.append(("Signal1", "PCM_CRUISE_2", 0))
       signals.append(("Signal2", "PCM_CRUISE_2", 0))
       signals.append(("Signal3", "PCM_CRUISE_2", 0))
+      signals.append(("Signal1", "PCM_CRUISE_SM", 0))
+      signals.append(("MAIN_ON", "PCM_CRUISE_SM", 0))
+      signals.append(("Signal2", "PCM_CRUISE_SM", 0))
+      signals.append(("CRUISE_CONTROL_STATE", "PCM_CRUISE_SM", 0))
+      signals.append(("Signal3", "PCM_CRUISE_SM", 0))
+      signals.append(("DISTANCE_LINES", "PCM_CRUISE_SM", 0))
+      signals.append(("Signal4", "PCM_CRUISE_SM", 0))
+      signals.append(("Signal5", "PCM_CRUISE_SM", 0))
+      signals.append(("UI_SET_SPEED", "PCM_CRUISE_SM", 0))
+      signals.append(("Signal6", "PCM_CRUISE_SM", 0))
       checks.append(("PCM_CRUISE_2", 33))
+      checks.append(("PCM_CRUISE_SM", 1))
 
     # add gas interceptor reading if we are using it
     if CP.enableGasInterceptor:

@@ -58,7 +58,7 @@ def create_acc_set_speed(packer, pcm_cruise_2_msg, speed):
   values = copy.copy(pcm_cruise_2_msg)
   values["SET_SPEED"] = speed
 
-  return packer.make_can_msg("PCM_CRUISE_2", 2, values)
+  return packer.make_can_msg("PCM_CRUISE_2", 0, values)
 
 
 def create_acc_ui_set_speed(packer, pcm_cruise_sm_msg, speed):
