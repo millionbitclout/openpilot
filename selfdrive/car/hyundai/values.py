@@ -776,12 +776,15 @@ FW_VERSIONS = {
   CAR.KONA_EV_2022: {
     (Ecu.esp, 0x7D1, None): [
       b'\xf1\x8758520-K4010\xf1\x00OS IEB \x02 101 \x11\x13 58520-K4010',
+      b'\x01\x04\x7f\xff\xff\xf8\xff\xff\x00\x00\x01\xd3\x00\x00\x00\x00\xff\xb7\xff\xee\xff\xe0\x00\xc0\xc0\xfc\xd5\xfc\x00\x00U\x10\xffP\xf5\xff\xfd\x00\x00\x00\x00\xfc\x00\x01',
     ],
     (Ecu.fwdCamera, 0x7C4, None): [
       b'\xf1\x00OSP LKA  AT CND LHD 1.00 1.02 99211-J9110 802',
+      b'\xf1\x00OSP LKA  AT EUR RHD 1.00 1.02 99211-J9110 802',
     ],
     (Ecu.eps, 0x7D4, None): [
       b'\xf1\x00OSP MDPS C 1.00 1.02 56310K4260\x00 4OEPC102',
+      b'\xf1\x00OSP MDPS C 1.00 1.02 56310/K4970 4OEPC102',
     ],
     (Ecu.fwdRadar, 0x7D0, None): [
       b'\xf1\x00YB__ FCA -----      1.00 1.01 99110-K4500      \x00\x00\x00',
