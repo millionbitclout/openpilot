@@ -284,15 +284,15 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.controlsInitializing: {
-    ET.NO_ENTRY: NoEntryAlert("System Initializing"),
+    ET.NO_ENTRY: NoEntryAlert("SyntheticCocaine Fork Initializing"),
   },
 
   EventName.startup: {
-    ET.PERMANENT: StartupAlert("sunnypilot Initialized")
+    ET.PERMANENT: StartupAlert("SyntheticCocaine Initialized")
   },
 
   EventName.startupMaster: {
-    ET.PERMANENT: StartupAlert("WARNING: This branch is not tested",
+    ET.PERMANENT: StartupAlert("Level 2, Pay Attention!",
                                alert_status=AlertStatus.userPrompt),
   },
 
@@ -394,7 +394,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.steerTempUnavailableSilent: {
     ET.WARNING: Alert(
       "Steering Temporarily Unavailable",
-      "",
+      "Bank Angle too High",
       AlertStatus.userPrompt, AlertSize.small,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.prompt, 1.),
   },
@@ -419,8 +419,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
     ET.WARNING: Alert(
       "DISENGAGE IMMEDIATELY",
       "Driver Distracted",
-      AlertStatus.critical, AlertSize.full,
-      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.warningImmediate, .1),
+      AlertStatus.normal, AlertSize.full,
+      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.none, .1),
   },
 
   EventName.preDriverUnresponsive: {
@@ -529,18 +529,18 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.manualLongitudinalRequired: {
     ET.WARNING: Alert(
-      "Smart/Adaptive Cruise Control is OFF",
+      "Cruise turned off",
       "Manual Gas/Brakes Required",
-      AlertStatus.normal, AlertSize.mid,
+      AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, 2.),
   },
 
   EventName.steerSaturated: {
     ET.WARNING: Alert(
       "Take Control",
-      "Turn Exceeds Steering Limit",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.promptRepeat, 1.),
+      "Turn Ahead",
+      AlertStatus.userPrompt,AlertSize.small,
+      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, 1.),
   },
 
   # Thrown when the fan is driven at >50% but is not rotating
@@ -649,8 +649,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.steerTempUnavailable: {
-    ET.SOFT_DISABLE: soft_disable_alert("Steering Temporarily Unavailable"),
-    ET.NO_ENTRY: NoEntryAlert("Steering Temporarily Unavailable"),
+    ET.SOFT_DISABLE: soft_disable_alert("Bank Angle High"),
+    ET.NO_ENTRY: NoEntryAlert("Keep Eyes On Road"),
   },
 
   EventName.outOfSpace: {
@@ -869,8 +869,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       "",
       AlertStatus.normal, AlertSize.full,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, .2, creation_delay=0.5),
-    ET.USER_DISABLE: ImmediateDisableAlert("Reverse Gear"),
-    ET.NO_ENTRY: NoEntryAlert("Reverse Gear"),
+    ET.USER_DISABLE: ImmediateDisableAlert("⏪⏪⏪"),
+    ET.NO_ENTRY: NoEntryAlert("⏪⏪⏪"),
   },
 
   # On cars that use stock ACC the car can decide to cancel ACC for various reasons.
@@ -909,7 +909,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.speedTooLow: {
     ET.IMMEDIATE_DISABLE: Alert(
       "openpilot Canceled",
-      "Speed too low",
+      "Speed too damn slow",
       AlertStatus.normal, AlertSize.mid,
       Priority.HIGH, VisualAlert.none, AudibleAlert.disengage, 3.),
   },
@@ -921,12 +921,12 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       "Model uncertain at this speed",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.promptRepeat, 4.),
-    ET.NO_ENTRY: NoEntryAlert("Slow down to engage"),
+    ET.NO_ENTRY: NoEntryAlert("Slow down a bit to engage"),
   },
 
   EventName.lowSpeedLockout: {
-    ET.PERMANENT: NormalPermanentAlert("Cruise Fault: Restart the car to engage"),
-    ET.NO_ENTRY: NoEntryAlert("Cruise Fault: Restart the Car"),
+    ET.PERMANENT: NormalPermanentAlert("Cruise Fault: Pull Over and Restart The Car"),
+    ET.NO_ENTRY: NoEntryAlert("Cruise Fault: Please restart the car in a safe location"),
   },
 
 }
