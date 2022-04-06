@@ -226,7 +226,7 @@ void DevicePanel::poweroff() {
 
 SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent) {
   gitBranchLbl = new LabelControl("Git Branch");
-  gitCommitLbl = new LabelControl("Git Commit");
+  gitCommitLbl = new LabelControl("NG773");
   osVersionLbl = new LabelControl("OS Version");
   versionLbl = new LabelControl("Version", "", QString::fromStdString(params.get("ReleaseNotes")).trimmed());
   lastUpdateLbl = new LabelControl("Last Update Check", "", "The last time openpilot successfully checked for an update. The updater only runs while the car is off.");
@@ -480,11 +480,11 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
 
   setStyleSheet(R"(
     #backBtn, #setCarBtn {
-      font-size: 50px;
+      font-size: 40px;
       margin: 0px;
-      padding: 20px;
+      padding: 18px;
       border-width: 0;
-      border-radius: 30px;
+      border-radius: 28px;
       color: #dddddd;
       background-color: #444444;
     }
@@ -493,7 +493,7 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
   QList<ParamControl*> toggles;
 
   toggles.append(new ParamControl("QuietDrive",
-                                  "Quiet Drive 🤫",
+                                  "STFU",
                                   "openpilot will display alerts but only play the most important warning sounds. This feature can be toggled while the car is on.",
                                   "../assets/offroad/icon_mute.png",
                                   this));
@@ -516,34 +516,10 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
                                  "../assets/offroad/icon_shell.png",
                                  this));
 
-  toggles.append(new ParamControl("ReverseAccChange",
-                                  "ACC +/-: Short=5, Long=1",
-                                  "Change the ACC +/- buttons behavior with cruise speed change in openpilot.\nDisabled (Stock):  Short=1, Long=5\nEnabled:  Short=5, Long=1",
-                                  "../assets/offroad/icon_acc_change.png",
-                                  this));
-
-  toggles.append(new ParamControl("NoOffroadFix",
-                                 "Fix openpilot No Offroad",
-                                 "Enforce openpilot to go offroad and turns off after shutting down the car. This feature fixes non-official devices running openpilot without comma power.\nOnly enable this feature if your comma device does not shut down after the car is turned off.",
-                                 "../assets/offroad/icon_shell.png",
-                                 this));
-
-  toggles.append(new ParamControl("ACCMADSCombo",
-                                  "Enable ACC+MADS with RES+/SET-",
-                                  "Engage both ACC and MADS with a single press of RES+ or SET- button.\nNote: Once MADS is engaged via this mode, it will remain engaged until it is manually disabled via LFA/LKAS/Cruise MAIN button or car shut off.",
-                                  "../assets/offroad/icon_openpilot.png",
-                                  this));
-
   toggles.append(new ParamControl("DisableMADS",
                                   "Disable M.A.D.S.",
                                   "Disable the beloved M.A.D.S. feature. Enable Stock openpilot engagement/disengagement.",
                                   "../assets/offroad/icon_openpilot.png",
-                                  this));
-
-  toggles.append(new ParamControl("StockResumeAlt",
-                                  "Stop N' Go Resume Alternative",
-                                  "Offer alternative behavior to auto resume when stopped behind a lead car using stock SCC/ACC. This feature removes the repeating prompt chime when stopped and/or allows some cars to use auto resume (i.e., Genesis).",
-                                  "../assets/offroad/icon_speed_limit.png",
                                   this));
 
   toggles.append(new ParamControl("HandsOnWheelMonitoring",
@@ -571,7 +547,7 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
                                   this));
 
   toggles.append(new ParamControl("SpeedLimitPercOffset",
-                                  "Enable Speed Limit % Offset",
+                                  "Enable Speed Limit Offset",
                                   "Set speed limit slightly higher than actual speed limit for a more natural drive.",
                                   "../assets/offroad/icon_speed_limit.png",
                                   this));
@@ -597,8 +573,6 @@ SunnypilotPanel::SunnypilotPanel(QWidget* parent) : QWidget(parent) {
 
   toggle_layout->addWidget(horizontal_line());
   toggle_layout->addWidget(new AutoLaneChangeTimer());
-  toggle_layout->addWidget(horizontal_line());
-  toggle_layout->addWidget(new SpeedLimitValueOffset());
   toggle_layout->addWidget(horizontal_line());
   toggle_layout->addWidget(new BrightnessControl());
   toggle_layout->addWidget(horizontal_line());
